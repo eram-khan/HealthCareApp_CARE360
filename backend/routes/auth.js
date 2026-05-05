@@ -101,6 +101,30 @@ router.post('/doctor/register',
 
 
 
+ router.post('/patient/anonymous', async (req, res) => {
+    try {
+        const timestamp = Date.now();
+        const randomId = Math.random().toString(36).substring(2, 8).toUpperCase();
+        
+        const dummyEmail = `anonymous_${randomId}_${timestamp}@safe.care360.local`;
+        const dummyPassword = Math.random().toString(36).slice(-12);
+        const dummyName = `Anonymous_${randomId}`;
+
+        const hashed = await bcrypt.hash(dummyPassword, 12);
+        
+        const patient = await Patient.create({
+            name: dummyName,
+            email: dummyEmail,
+            password: hashed
+        });
+        
+        const token = signToken(patient._id, 'patient');
+        res.created({token, user: {id:patient._id, type:'patient', name: dummyName}},'Anonymous Access Granted');
+    } catch (error) {
+        res.serverError('Anonymous access failed', [error.message]);
+    }
+ });
+
  //Google Outh Start form here
 
 

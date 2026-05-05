@@ -1,0 +1,103 @@
+/* support-theme.css */
+:root {
+  --support-primary: #4A90E2; /* Soft blue */
+  --support-secondary: #6FCF97; /* Soft green */
+  --support-bg: #F7F9FB; /* Light grey */
+  --support-card-bg: #FFFFFF;
+  --support-text-primary: #2D2D2D;
+  --support-text-secondary: #6B7280;
+  --support-emergency: #EB5757; /* Emergency Alert color */
+  --support-border: #E5E7EB;
+  --support-radius: 12px;
+  --support-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.support-container {
+  background-color: var(--support-bg);
+  min-height: 100vh;
+  color: var(--support-text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  padding: 20px;
+}
+
+.support-header {
+  margin-bottom: 24px;
+}
+
+.support-header h1 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.support-header p {
+  color: var(--support-text-secondary);
+  font-size: 14px;
+}
+
+.support-card {
+  background-color: var(--support-card-bg);
+  border-radius: var(--support-radius);
+  box-shadow: var(--support-shadow);
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--support-border);
+}
+
+.support-btn {
+  border-radius: var(--support-radius);
+  padding: 12px 20px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.support-btn-primary {
+  background-color: var(--support-primary);
+  color: white;
+}
+
+.support-btn-primary:active {
+  background-color: #357ABD;
+}
+
+.support-btn-emergency {
+  background-color: var(--support-emergency);
+  color: white;
+  width: 100%;
+  padding: 16px;
+  font-size: 18px;
+}
+
+.support-btn-emergency:active {
+  background-color: #C0392B;
+}
+
+.support-btn-outline {
+  background-color: transparent;
+  border: 2px solid var(--support-primary);
+  color: var(--support-primary);
+}
+
+.support-btn-outline:active {
+  background-color: rgba(74, 144, 226, 0.1);
+}
+
+/* Utilities */
+.text-center { text-align: center; }
+.w-full { width: 100%; }
+.mt-4 { margin-top: 16px; }
+.mb-4 { margin-bottom: 16px; }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.gap-2 { gap: 8px; }
+.gap-4 { gap: 16px; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }

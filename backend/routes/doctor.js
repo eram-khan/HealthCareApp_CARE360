@@ -103,13 +103,13 @@ router.put(
     body("name").optional().notEmpty(),
     body("specialization").optional().notEmpty(),
     body("qualification").optional().notEmpty(),
-    body("category").optional().notEmpty(),
-    body("experience").optional().isInt({ min: 0 }),
+    body("category").optional(),
+    body("experience").optional(),
     body("about").optional().isString(),
-    body("fees").optional().isInt({ min: 0 }),
+    body("fees").optional(),
     body("hospitalInfo").optional().isObject(),
-    body("availabilityRange.startDate").optional().isISO8601(),
-    body("availabilityRange.endDate").optional().isISO8601(),
+    body("availabilityRange.startDate").optional(),
+    body("availabilityRange.endDate").optional(),
     body("availabilityRange.excludedWeekdays").optional().isArray(),
     body("dailyTimeRanges").isArray({ min: 1 }),
     body("dailyTimeRanges.*.start").isString(),
@@ -223,7 +223,7 @@ router.get(
           totalPatients,
           todayAppointments: todayAppointments.length,
           totalRevenue,
-          completedAppointments:completedAppointmentCount,
+          completedAppointments: completedAppointmentCount,
           averageRating: 4.8,
         },
         todayAppointments,
@@ -235,7 +235,7 @@ router.get(
         },
       };
 
-      res.ok(dashboardData,'Dashboard data retrived')
+      res.ok(dashboardData, 'Dashboard data retrived')
     } catch (error) {
       console.error("Dashboard error", error);
       res.serverError("failed to fetch doctor dashboard", [error.message]);
