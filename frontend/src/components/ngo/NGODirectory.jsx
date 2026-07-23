@@ -33,7 +33,7 @@ export default function NGODirectory() {
   
   useEffect(() => {
     // Fetch from the API
-    fetch('http://localhost:8000/api/ngo')
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/ngo`)
       .then(res => res.json())
       .then(data => {
         if (data.success && data.data) {
