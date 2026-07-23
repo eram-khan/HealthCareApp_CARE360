@@ -153,7 +153,7 @@ router.post('/doctor/register',
 
 
              //Redirect to frontend with token
-             const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+             const frontendUrl = process.env.FRONTEND_URL || 'https://health-care-app-care-360-gp2d.vercel.app';
              const redirectUrl = `${frontendUrl}/auth/success?token=${token}&type=${type}&user=${encodeURIComponent(JSON.stringify({
                 id: user._id,
                 name: user.name,

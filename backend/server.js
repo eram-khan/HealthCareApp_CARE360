@@ -24,7 +24,28 @@ app.use(helmet());
 //morgan is an HTTP request logger middleware
 app.use(morgan('dev'))
 app.use(cors({
-    origin: (process.env.ALLOWED_ORIGINS || '').split(',').map(s => s.trim()).filter(Boolean) || '*',
+    origin: function (origin, callback) {
+        // Allow requests with no origin (mobile apps, Postman, server-to-server)
+        if (!origin) return callback(null, true);
+
+        const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
+            .split(',').map(s => s.trim()).filter(Boolean);
+
+        // Always allow localhost for development
+        const isLocalhost = origin.startsWith('http://localhost') || origin.startsWith('http://127.0.0.1');
+        // Always allow any Vercel deployment
+        const isVercel = origin.endsWith('.vercel.app');
+        // Always allow any Render deployment
+        const isRender = origin.endsWith('.onrender.com');
+        // Check explicit allowlist from env
+        const isAllowlisted = allowedOrigins.includes(origin);
+
+        if (isLocalhost || isVercel || isRender || isAllowlisted) {
+            return callback(null, true);
+        }
+
+        return callback(new Error(`CORS: origin ${origin} not allowed`));
+    },
     credentials: true
 }));
 app.use(bodyParser.json());
